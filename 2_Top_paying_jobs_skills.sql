@@ -3,10 +3,11 @@ Question: What skills are required for the top-paying data analyst remote jobs?
 - Why? It provides a detailed look at which high-paying jobs demand certain skills, 
   helping job seekers understand which skills to develop that align with top salaries
 */
+
+--Skills required for top paying jobs
 WITH top_paying_jobs AS(
     SELECT
-        job_id,
-        job_title,
+        job_id,job_title,
         CASE 
         WHEN job_location = 'Anywhere' THEN 'Remote'
         ELSE 'Onsite'
@@ -25,8 +26,7 @@ WITH top_paying_jobs AS(
     LIMIT 10
 )
 SELECT
-    top_paying_jobs.*,
-    skills
+    top_paying_jobs.*, skills
 FROM top_paying_jobs
 INNER JOIN skills_job_dim ON top_paying_jobs.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id;
